@@ -2,15 +2,26 @@
   <aside class="col-xs-4">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <img class="media-object img-rounded img-responsive" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
+        <div class="text-center">
+          <%if @user.profile_image? %>
+            <img class="media-object img-rounded img-responsive" src="<%= @user.profile_image %>" alt="">
+          <% else %>
+            <img class="media-object img-rounded img-responsive" src="images_myblog/no-translate-detected_318-10541.jpeg" alt="プロフィール画像" %>
+          <% end %>
+        </div>
       </div>
       <div class="panel-body">
-        <h3 class="panel-title"><%= @user.name %></h3>
+        <div class="text-center">
+          <h1 class="panel-title"><%= @user.name %></h1>
+        </div>
       </div>
       <div class="panel-footer">
-        <h3 class="panel-description"><%= @user.profile_description %></h3>
+        <h4 class="panel-description"><%= @user.profile_description %></h4>
       </div>
     </div>
+    <% if logged_in? %>
+      <%= link_to '編集する', profile_edit_path(current_user), class: 'btn btn-default' %>
+    <% end %>
   </aside>
   <div class="col-xs-8">
     <ul class="nav nav-tabs nav-justified">
