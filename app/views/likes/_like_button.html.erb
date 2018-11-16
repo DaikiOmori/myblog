@@ -1,5 +1,5 @@
 <% if logged_in? %>
-  <div class="col-xs-offset-4">
+  <div class="col-xs-offset-1">
     <% if current_user.like?(blog) %>
       <%= form_for(current_user.likes.find_by(blog_id: blog.id), html: { method: :delete }) do |f| %>
         <%= hidden_field_tag :blog_id, blog.id %>

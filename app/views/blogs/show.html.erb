@@ -18,13 +18,13 @@
       <div class="article article-content">
         <h3><%= @blog.content %></h3>
       </div>
+        <% if current_user != @user %>
+  　       <%= render 'likes/like_button', blog: @blog %>
+　      <% end %>
     </div>
     </div>
   </aside>
   <div class="col-xs-4">
     <%= render 'users/user', users: @user %>
   </div>
-  <% if current_user != @user %>
-  　<%= render 'likes/like_button', blog: @blog %>
-　<% end %>
 </div>
