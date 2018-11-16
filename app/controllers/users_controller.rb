@@ -1,10 +1,12 @@
 class UsersController < ApplicationController
-before_action :require_user_logged_in, only: [:profile_edit, :edit, :update, :destroy_user, :destroy]
-  
+before_action :require_user_logged_in, only: [:profile_edit, :edit, :update, :destroy_user, :destroy, :likes]
+
+
   def show
     @user = User.find(params[:id])
+    @blogs = @user.blogs.order('created_at DESC').page(params[:page])
   end
-
+  
   def new
     @user = User.new
   end
@@ -51,9 +53,15 @@ before_action :require_user_logged_in, only: [:profile_edit, :edit, :update, :de
     flash[:success] = 'ユーザーは正常に削除されました'
     redirect_to root_url
   end
-
+  
+  def likes
+    @user = User.find(params[:id])
+    @likes = @user.like_blogs.page(params[:page])
+  end
+  
 private
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :profile_image, :profile_description)
   end
+
 end

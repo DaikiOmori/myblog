@@ -1,10 +1,15 @@
 <% if logged_in? %>
-  <p>ログイン完了ユーザ: <%= current_user.name %></p>
+  <div class="text-center">
+　<h1>ブログ一覧</h1><br>
+　</div>
+　<%= render 'blogs/blogs', blogs: @blogs %>
 <% else %>
   <div class="center jumbotron">
     <div class="text-center">
       <h1>Welcome to the Myblog</h1>
-      <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
+      <%= link_to 'さあ、始めよう!', signup_path, class: 'btn btn-lg btn-primary' %>
     </div>
   </div>
+  <h1>ブログ一覧</h1><br>
+  <%= render 'blogs/blogs', blogs: @blogs %>
 <% end %>

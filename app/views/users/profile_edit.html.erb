@@ -15,9 +15,9 @@
       </div>
 
       <div class="form-group">
-        <%= f.label :profile_image, 'プロフィール画像' %>
+        <%= f.label :profile_image, 'プロフィール画像' %><br>
         <div class="col-md-4 col-md-offset-4">
-          <img class="media-object img-rounded img-responsive" src="<%= @user.profile_image %>" alt=""><br>
+          <%= image_tag @user.profile_image, class: "media-object img-rounded img-responsive", alt: "プロフィール画像" %><br>
         </div>
           <%= f.file_field :profile_image, class: 'form-control' %>
       </div>

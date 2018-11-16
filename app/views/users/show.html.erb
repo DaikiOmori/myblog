@@ -1,31 +1,11 @@
 <div class="row">
   <aside class="col-xs-4">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <div class="text-center">
-          <%if @user.profile_image? %>
-            <img class="media-object img-rounded img-responsive" src="<%= @user.profile_image %>" alt="">
-          <% else %>
-            <img class="media-object img-rounded img-responsive" src="images_myblog/no-translate-detected_318-10541.jpeg" alt="プロフィール画像" %>
-          <% end %>
-        </div>
-      </div>
-      <div class="panel-body">
-        <div class="text-center">
-          <h1 class="panel-title"><%= @user.name %></h1>
-        </div>
-      </div>
-      <div class="panel-footer">
-        <h4 class="panel-description"><%= @user.profile_description %></h4>
-      </div>
-    </div>
-    <% if logged_in? %>
-      <%= link_to '編集する', profile_edit_path(current_user), class: 'btn btn-default' %>
-    <% end %>
+    <%= render 'user', users: @users %>
   </aside>
   <div class="col-xs-8">
-    <ul class="nav nav-tabs nav-justified">
-      <li><a href="#">Myblogs</a></li>
-    </ul>
+    <div class="text-center">
+      <h1>このユーザーのブログ一覧</h1><br>
+    </div>
+    <%= render 'blogs/blogs', blogs: @blogs %>
   </div>
 </div>
