@@ -65,7 +65,7 @@ private
   end
   
   def correct_user
-    @user = User.find_by(params[:id])
+    @user = User.find_by(id: params[:id])
     unless @user
       flash[:danger] = '他のユーザーに関する変更はできません'
       redirect_to root_url
