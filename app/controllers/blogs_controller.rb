@@ -1,6 +1,6 @@
 class BlogsController < ApplicationController
 before_action :require_user_logged_in, only: [:new, :create, :edit, :update, :destroy]  
-
+before_action :correct_user, only: [:destroy, :edit, :update]
   def show
     @blog = Blog.find(params[:id])
     @user = @blog.user
@@ -48,4 +48,13 @@ private
   def blog_params
     params.require(:blog).permit(:blog_image, :title, :content, :profile_image)
   end
+  
+  def correct_user
+    @blog = current_user.blogs.find_by(id: params[:id])
+    unless @blog
+      flash[:danger] = '他のユーザーのブログに関する変更はできません'
+      redirect_to root_url
+    end
+  end
+
 end

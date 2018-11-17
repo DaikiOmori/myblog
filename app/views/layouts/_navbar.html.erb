@@ -15,7 +15,6 @@
 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <% if logged_in? %>
-            <li><%= link_to 'ログアウト', logout_path, method: :delete %></li>
             <li><%= link_to 'お気に入り', likes_user_path(current_user) %></li>
             <li><%= link_to 'ランキング', rankings_like_path %></li>
             <li class="dropdown">
@@ -28,6 +27,8 @@
                 <li><%= link_to '登録情報変更', edit_user_path(current_user) %></li>
                 <li role="separator" class="divider"></li>
                 <li><%= link_to 'ユーザー削除', delete_user_path(current_user) %></li>
+                <li role="separator" class="divider"></li>
+                <li><%= link_to 'ログアウト', logout_path, method: :delete %></li>
               </ul>
             </li>
           <% else %>

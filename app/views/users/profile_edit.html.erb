@@ -17,7 +17,11 @@
       <div class="form-group">
         <%= f.label :profile_image, 'プロフィール画像' %><br>
         <div class="col-md-4 col-md-offset-4">
-          <%= image_tag @user.profile_image, class: "media-object img-rounded img-responsive", alt: "プロフィール画像" %><br>
+          <% if @user.profile_image? %>
+            <%= image_tag @user.profile_image, class: "media-object img-rounded img-responsive", alt: "プロフィール画像" %>
+          <% else %>
+            <%= image_tag '/images/no-translate-detected_318-10541.jpg', class: "media-object img-rounded img-responsive", alt: "プロフィール画像" %><br>
+          <% end %>
         </div>
           <%= f.file_field :profile_image, class: 'form-control' %>
       </div>

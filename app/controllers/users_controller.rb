@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 before_action :require_user_logged_in, only: [:profile_edit, :edit, :update, :destroy_user, :destroy, :likes]
-
+before_action :correct_user, only: [:destroy, :profile_edit, :edit, :update, :destroy_user]
 
   def show
     @user = User.find(params[:id])
@@ -63,5 +63,12 @@ private
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :profile_image, :profile_description)
   end
-
+  
+  def correct_user
+    @user = User.find_by(params[:id])
+    unless @user
+      flash[:danger] = '他のユーザーに関する変更はできません'
+      redirect_to root_url
+    end
+  end
 end
