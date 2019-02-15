@@ -38,14 +38,11 @@ before_action :correct_user, only: [:destroy, :profile_edit, :edit, :update, :de
     if @user.update(user_params)
       flash[:success] = '正常に更新されました'
       redirect_to @user
+      
     else
       flash.now[:danger] = '更新されませんでした'
       render :edit
     end
-  end
-
-  def index
-    @users = User.all
   end
 
   def destroy_user
