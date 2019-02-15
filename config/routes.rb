@@ -17,4 +17,13 @@ Rails.application.routes.draw do
     end
   end
   get 'rankings/like', to: 'rankings#like'
+  
+  resources :users, only: [:index, :show, :new, :create] do
+    member do
+      get :followings
+      get :followers
+    end
+  end
+  resources :relationships, only: [:create, :destroy]
+
 end

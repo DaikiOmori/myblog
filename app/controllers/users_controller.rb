@@ -5,6 +5,7 @@ before_action :correct_user, only: [:destroy, :profile_edit, :edit, :update, :de
   def show
     @user = User.find(params[:id])
     @blogs = @user.blogs.order('created_at DESC').page(params[:page])
+    counts(@user)
   end
   
   def new
@@ -43,6 +44,10 @@ before_action :correct_user, only: [:destroy, :profile_edit, :edit, :update, :de
     end
   end
 
+  def index
+    @users = User.all
+  end
+
   def destroy_user
     @user = User.find(params[:id])
   end
@@ -57,6 +62,16 @@ before_action :correct_user, only: [:destroy, :profile_edit, :edit, :update, :de
   def likes
     @user = User.find(params[:id])
     @likes = @user.like_blogs.page(params[:page])
+  end
+  
+  def followings
+    @user = User.find(params[:id])
+    @followings = @user.followings.page(params[:page])
+  end
+  
+  def followers
+    @user = User.find(params[:id])
+    @followers = @user.followers.page(params[:page])
   end
   
 private
